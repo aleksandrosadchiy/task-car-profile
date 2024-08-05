@@ -1,0 +1,82 @@
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .my-car-main-container {
+        .control {
+            padding-bottom: 20px;
+        }
+        .car-selector-container {
+            display: flex;
+        }
+        .my-car-container {
+            .car-title {
+                display: flex;
+            }
+            .car-specs-container {
+                display: flex;
+                justify-content: flex-start;
+            }
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+    .my-car-main-container {
+        .my-car-container {
+            .car-specs-container {
+                flex-direction: column;
+                .car-image {
+                    flex-grow: 1;
+                    max-width: 250px;
+                    align-self: center;
+                }
+                .car-details {
+                    flex-grow: 2;
+                    align-self: center;
+                    .table-wrapper  {
+                        padding-bottom: 20px;
+                        border: none;
+                        .table {
+                            tbody {
+                                display: flex;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .button-container {
+            padding-bottom: 20px;
+            text-align: center;
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__s) {
+  .my-car-main-container {
+      .my-car-container {
+          .car-specs-container {
+              .car-image {
+                  flex-grow: 1;
+                  max-width: 250px;
+              }
+              .car-details {
+                  flex-grow: 2;
+                  padding-left: 20px;
+              }
+          }
+      }
+  }
+}
+

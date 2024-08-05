@@ -1,0 +1,84 @@
+<div class="my-car-main-container">
+    <div class="car-options-container">
+        <div class="message info empty" data-bind="visible: (myCar().customer_id == 0)">
+            <span data-bind="i18n: 'You don\'t have a car.'"></span>
+        </div>
+        <div class="car-selector-container" data-bind="visible: isCarSelectorVisible()">
+            <div class="selector-container">
+                <div class="field field-select-make">
+                    <h2 data-bind="i18n: 'Select a Make'"></h2>
+                    <div class="control" data-bind="if: (makeOptions().length > 0)">
+                        <select class="select" name="car_make" data-bind="
+        options: makeOptions(),
+        optionsCaption: 'Select a make...',
+        value: selectedMake,
+        event: {change: onMakeChange()};"></select>
+                    </div>
+                </div>
+                <div class="field field-select-car" data-bind="if: (carOptions().length > 0)">
+                    <h2 data-bind="i18n: 'Select a Model'"></h2>
+                    <div class="control">
+                        <select class="select" name="car_model" data-bind="
+        options: carOptions(),
+        optionsCaption: 'Select a car...',
+        optionsText: function(item) {
+                       return item.year + ' ' + item.model
+                   },
+        optionsValue: 'entity_id',
+        value: selectedCar,
+        event: {change: onCarChange()};"></select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="my-car-container block-content" data-bind="if: (myCar().customer_id > 0)">
+            <div class="car-title">
+                <h2 data-bind="text: getCarTitle()"></h2>
+            </div>
+            <div class="car-specs-container">
+                <div class="car-image">
+                    <img data-bind="attr: {'src': myCar().image, 'alt': getCarTitle(), 'title': getCarTitle() }"
+                         loading="lazy"/>
+                </div>
+                <div class="car-details">
+                    <div class="table-wrapper car-specs">
+                        <table class="data table table-cars-specs" id="car-specs-table">
+                            <tbody>
+                            <tr>
+                                <td class="col item" data-bind="i18n: 'Make'"></td>
+                                <td class="col value" data-bind="text: myCar().make"></td>
+                            </tr>
+                            <tr>
+                                <td class="col item" data-bind="i18n: 'Model'"></td>
+                                <td class="col value" data-bind="text: myCar().model"></td>
+                            </tr>
+                            <tr>
+                                <td class="col item" data-bind="i18n: 'Year'"></td>
+                                <td class="col value" data-bind="text: myCar().year"></td>
+                            </tr>
+                            <tr>
+                                <td class="col item" data-bind="i18n: 'Seats'"></td>
+                                <td class="col value" data-bind="text: myCar().seats"></td>
+                            </tr>
+                            <tr>
+                                <td class="col item" data-bind="i18n: 'MPG'"></td>
+                                <td class="col value" data-bind="text: myCar().mpg"></td>
+                            </tr>
+                            <tr>
+                                <td class="col item" data-bind="i18n: 'MSRP Price'"></td>
+                                <td class="col value" data-bind="text: formatPrice(myCar().price)"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="button-container">
+            <button data-bind="click: changeAddCar" class="action primary" name="change_car" type="button"
+                    value="change_car">
+                <span data-bind="text: getAddButtonText()"></span>
+            </button>
+        </div>
+    </div>
+</div>

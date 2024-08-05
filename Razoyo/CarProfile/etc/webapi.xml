@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/razoyo/car/getCarsByMake" method="POST">
+        <service class="Razoyo\CarProfile\Api\ApiCarsRepositoryInterface" method="getCarsByMake"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+    <route url="/V1/razoyo/car/getMyCar" method="POST">
+        <service class="Razoyo\CarProfile\Api\CustomerCarRepositoryInterface" method="get"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/razoyo/car/getMakes" method="POST">
+        <service class="Razoyo\CarProfile\Api\ApiCarsRepositoryInterface" method="getCarMakes"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+    <route url="/V1/razoyo/car/saveCar" method="POST">
+        <service class="Razoyo\CarProfile\Api\CustomerCarRepositoryInterface" method="saveByCarId"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+</routes>

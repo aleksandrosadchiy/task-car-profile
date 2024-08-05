@@ -1,0 +1,20 @@
+<?php
+
+/** @var Template $block */
+
+use Magento\Framework\View\Element\Template;
+
+?>
+<div id="car-profile-container" data-bind="scope:'car-profile'" class="car-profile-container">
+    <!-- ko foreach: getRegion('messages') -->
+    <!-- ko template: getTemplate() --><!-- /ko -->
+    <!--/ko-->
+    <!-- ko template: getTemplate() --><!-- /ko -->
+</div>
+<script type="text/x-magento-init">
+    {
+        "#car-profile-container": {
+            "Magento_Ui/js/core/app": <?= /* @noEscape */ $block->getJsLayout() ?>
+    }
+}
+</script>

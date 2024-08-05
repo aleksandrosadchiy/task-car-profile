@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Customer\Api\CustomerRepositoryInterface">
+        <plugin name="customer_car_repository_plugin"
+                type="Razoyo\CarProfile\Plugin\CustomerRepositoryPlugin"/>
+    </type>
+    <preference for="Razoyo\CarProfile\Api\Data\CustomerCarInterface"
+                type="Razoyo\CarProfile\Model\CustomerCar"/>
+    <preference for="Razoyo\CarProfile\Api\ApiCarsRepositoryInterface"
+                type="Razoyo\CarProfile\Model\ApiCarsRepository"/>
+    <type name="Magento\Customer\Api\Data\CustomerInterface">
+        <plugin name="CustomerCarExtensionAttributeOperations" type="Razoyo\CarProfile\Plugin\CustomerPlugin" sortOrder="1"/>
+    </type>
+    <preference for="Razoyo\CarProfile\Api\CustomerCarRepositoryInterface"
+                type="Razoyo\CarProfile\Model\CustomerCarRepository"/>
+</config>
